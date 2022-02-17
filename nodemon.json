@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "src"
+  ],
+  "ignore": [],
+  "ext": "ts,mjs,js,json,graphql",
+  "exec": "npm run build",
+  "legacyWatch": true
+}
