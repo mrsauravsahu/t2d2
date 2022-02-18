@@ -18,6 +18,6 @@ describe("resources", () => {
   })
 
   test("time_sleep should be created", () => {
-    expect(currentPlan.state.planned_values.root_module.resources[0].type).toEqual("time_sleep")
+    expect(currentPlan).hasRootModuleResourceOfType('time_sleep')
   })
 })
