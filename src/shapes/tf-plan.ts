@@ -102,16 +102,11 @@ export interface Configuration {
   root_module: RootModule2;
 }
 
-export interface TerraformStateObj {
+export interface TFPlan {
   format_version: string;
   terraform_version: string;
   variables: Variables;
   planned_values: PlannedValues;
   resource_changes: ResourceChange[];
   configuration: Configuration;
-}
-
-export interface TerraformState {
-  state: TerraformStateObj,
-  raw: string
 }
