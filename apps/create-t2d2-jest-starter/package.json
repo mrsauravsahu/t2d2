@@ -1,0 +1,24 @@
+{
+  "name": "@mrsauravsahu/create-t2d2",
+  "version": "0.1.0-alpha.1",
+  "description": "Jest Project Starter for T2D2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'no test here lel'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrsauravsahu/t2d2.git"
+  },
+  "keywords": [
+    "yeoman",
+    "t2d2",
+    "jest"
+  ],
+  "author": "Sahu, S <mrsauravsahu@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrsauravsahu/t2d2/issues"
+  },
+  "homepage": "https://github.com/mrsauravsahu/t2d2#readme"
+}
