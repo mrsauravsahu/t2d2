@@ -1,8 +1,8 @@
 import * as jq from 'node-jq'
-import { TerraformState } from "../shapes/terraform-plan";
+import { TFState } from "../tf-state";
 
-export const hasRootModuleResourceOfType = async (state: TerraformState, type: string): Promise<jest.CustomMatcherResult> => {
-  const matchedResources: any = await jq.run(`[.planned_values.root_module.resources[] | select(.type == "${type}")]`, state.raw, {
+export const hasRootModuleResourceOfType = async (state: TFState, type: string): Promise<jest.CustomMatcherResult> => {
+  const matchedResources: any = await jq.run(`[.planned_values.root_module.resources[] | select(.type == "${type}")]`, state.rawState, {
     input: 'string',
     output: 'json'
   })

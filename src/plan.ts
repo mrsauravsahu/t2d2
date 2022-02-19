@@ -3,13 +3,13 @@ import * as path from 'path';
 import { execa } from 'execa';
 import { PlanOptions } from './shapes/plan-options';
 import { Profile } from './shapes/profile';
-import { TerraformState } from './shapes/terraform-plan';
+import { TFState } from './tf-state';
 
-export const plan = async (profile: Profile, options: PlanOptions): Promise<TerraformState> => {
+export const plan = async (profile: Profile, options: PlanOptions): Promise<TFState> => {
   var planArgs: string[] = [
     'plan',
     ...(options.varFile ? ['-var-file', options.varFile] : []),
-    ...(options.vars ? Object.keys(options.vars).map((key) => ['-var', `${key}=${(options?.vars || {})[key] ?? ''}`]): []).flat(),
+    ...(options.vars ? Object.keys(options.vars).map((key) => ['-var', `${key}=${(options?.vars || {})[key] ?? ''}`]) : []).flat(),
     "-out=terraform.tfstate.tmp"
   ]
 
@@ -35,11 +35,11 @@ export const plan = async (profile: Profile, options: PlanOptions): Promise<Terr
 
   const tfPlanJsonPath = path.join(profile.workspaceDir, 'plan.json');
   await writeFile(tfPlanJsonPath, show.stdout, { encoding: 'utf-8' })
-  
-  const state: TerraformState = {
-    state: JSON.parse(show.stdout),
-    raw: show.stdout
-  }
+
+  const state = new TFState(
+    JSON.parse(show.stdout),
+    show.stdout
+  )
 
   return state
 }
