@@ -1,11 +1,13 @@
 {
   "name": "create-t2d2-jest-starter",
-  "version": "0.1.0-alpha.1",
+  "version": "1.0.0-next.3",
   "description": "Jest Project Starter for T2D2",
+  "bin": {
+    "create-t2d2-jest-starter": "index.mjs"
+  },
   "main": "index.mjs",
   "scripts": {
-    "test": "echo 'no test here lel'",
-    "create-t2d2-jest-starter": "index.mjs"
+    "test": "echo 'no test here lel'"
   },
   "repository": {
     "type": "git",
