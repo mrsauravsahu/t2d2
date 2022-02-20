@@ -17,7 +17,7 @@ T2D2 helps bridge this gap by allowing you write your IaC tests with familiar Ja
 ```bash
 mkdir tests
 cd tests
-npm init @mrsauravsahu/t2d2
+npm init t2d2-jest-starter
 ```
 
 - Start writing your tests.

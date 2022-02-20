@@ -1,4 +1,4 @@
-import * as t2d2 from '@mrsauravsahu/t2d2';
+import * as t2d2 from 't2d2';
 
 describe("resources", () => {
   let profile: t2d2.Profile;
