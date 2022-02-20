@@ -1,17 +1,18 @@
 {
-  "name": "@mrsauravsahu/create-t2d2",
+  "name": "create-t2d2-jest-starter",
   "version": "0.1.0-alpha.1",
   "description": "Jest Project Starter for T2D2",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "test": "echo 'no test here lel'"
+    "test": "echo 'no test here lel'",
+    "create-t2d2-jest-starter": "index.mjs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrsauravsahu/t2d2.git"
   },
   "keywords": [
-    "yeoman",
+    "template",
     "t2d2",
     "jest"
   ],
