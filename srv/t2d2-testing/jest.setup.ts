@@ -1,5 +1,5 @@
 import 'babel-polyfill'
-import { registerJestMatchers } from '@mrsauravsahu/t2d2'
+import { registerJestMatchers } from 't2d2'
 
 registerJestMatchers();
 
