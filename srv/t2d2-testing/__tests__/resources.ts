@@ -29,10 +29,10 @@ describe("resources", () => {
   })
 
   test("sample_file have the right content", async () => {
-    // Get the first time_sleep resource in the state
+    // Get the resource in the plan
     const fileResource = plan.getResourceByAddress("module.files.local_file.sample")
 
-    // Because various resources have different shape in the plan
+    // Because various resources have different shapes in the plan
     // we move to any type. 
     // Note that this might break in different terraform versions
     const resource = fileResource as any
