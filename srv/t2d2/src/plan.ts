@@ -3,9 +3,10 @@ import * as path from 'path';
 import { execa } from 'execa';
 import { PlanOptions } from './shapes/plan-options';
 import { Profile } from './shapes/profile';
-import { TFState } from './tf-state';
+import { ParsedTFPlan } from './parsed-tf-plan';
+import { parsePlan } from './utils/parse-plan';
 
-export const plan = async (profile: Profile, options: PlanOptions): Promise<TFState> => {
+export const plan = async (profile: Profile, options: PlanOptions): Promise<ParsedTFPlan> => {
   var planArgs: string[] = [
     'plan',
     ...(options.varFile ? ['-var-file', options.varFile] : []),
@@ -36,10 +37,6 @@ export const plan = async (profile: Profile, options: PlanOptions): Promise<TFSt
   const tfPlanJsonPath = path.join(profile.workspaceDir, 'plan.json');
   await writeFile(tfPlanJsonPath, show.stdout, { encoding: 'utf-8' })
 
-  const state = new TFState(
-    JSON.parse(show.stdout),
-    show.stdout
-  )
-
-  return state
+  const parsedPlan = await parsePlan(show.stdout)
+  return parsedPlan
 }

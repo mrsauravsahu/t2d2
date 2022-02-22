@@ -2,7 +2,7 @@ import * as t2d2 from 't2d2';
 
 describe("resources", () => {
   let profile: t2d2.Profile;
-  let currentState: t2d2.TFState;
+  let plan: t2d2.ParsedTFPlan;
 
   beforeAll(async () => {
     profile = await t2d2.init({
@@ -10,7 +10,7 @@ describe("resources", () => {
       workspaceDir: '../t2d2-tf',
     })
 
-    currentState = await t2d2.plan(profile, { 
+    plan = await t2d2.plan(profile, { 
       vars: {
         "wait_time": "1s"
       }
@@ -19,24 +19,23 @@ describe("resources", () => {
 
   test("time_sleep should be created", () => {
     // Check if the root module has a time_sleep resource
-    expect(currentState).hasRootModuleResourceOfType('time_sleep1')
+    expect(plan).toHaveRootModuleResourceOfType('time_sleep')
   })
 
-  test("sample_file should be created", async () => {
+  test("sample local_file should be created in a module", () => {
     // Check if there are any resources with the given address
     // Searches across root module + all child modules
-    await currentState.hasResourceByAddress("time_sleep.wait_some_time")
+    plan.hasResourceByAddress("module.files.local_file.sample")
   })
 
-  test("sample_file should come from hashicorp/time provider", async () => {
-    // Get the first time_sleep resource in the state
-    const fileResource = await currentState.getResourceByAddress("time_sleep.wait_some_time")
+  test("sample_file have the right content", async () => {
+    // Get the resource in the plan
+    const fileResource = plan.getResourceByAddress("module.files.local_file.sample")
 
-    expect(fileResource).toEqual(
-      expect.objectContaining({
-        type: 'time_sleep',
-        provider_name: 'registry.terraform.io/hashicorp/time'
-      })
-    )
+    // Because various resources have different shapes in the plan
+    // we move to any type. 
+    // Note that this might break in different terraform versions
+    const resource = fileResource as any
+    expect(resource.values.content).toEqual("1 1 2 3 5 8 13 21")
   })
 })
