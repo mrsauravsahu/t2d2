@@ -6,7 +6,7 @@ registerJestMatchers();
 declare global {
    namespace jest {
     interface Matchers<R> {
-      hasRootModuleResourceOfType(type: string): jest.CustomMatcherResult;
+      toHaveRootModuleResourceOfType(type: string): jest.CustomMatcherResult;
     }
   }
 }

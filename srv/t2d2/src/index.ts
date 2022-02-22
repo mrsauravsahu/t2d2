@@ -1,6 +1,6 @@
 export * from './init'
 export * from './plan'
+export * from './parsed-tf-plan'
 export * from './shapes/profile'
 export * from './shapes/tf-plan'
-export * from './tf-state'
 export * from './utils/register-jest-matchers'

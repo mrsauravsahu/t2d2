@@ -1,20 +1,16 @@
-import * as jq from 'node-jq'
-import { TFState } from "../tf-state";
+import { ParsedTFPlan } from "../parsed-tf-plan";
 
-export const hasRootModuleResourceOfType = async (state: TFState, type: string): Promise<jest.CustomMatcherResult> => {
-  const matchedResources: any = await jq.run(`[.planned_values.root_module.resources[] | select(.type == "${type}")]`, state.rawState, {
-    input: 'string',
-    output: 'json'
-  })
+export const toHaveRootModuleResourceOfType = (plan: ParsedTFPlan, type: string): jest.CustomMatcherResult => {
 
-  const pass = (matchedResources as any[]).length > 0
-
-  return {
-    pass,
-    message: pass ? () => `bruh` : () => `lel`
+  try {
+    plan.hasRootModuleResourceOfType(type)
+    return { pass: true, message: () => `The plan does contains a resource of type '${type}' at the root module.` }
+  }
+  catch (error) {
+    return { pass: false, message: () => (error as Error).message }
   }
 }
 
 export const registerJestMatchers = () => {
-  expect.extend({ hasRootModuleResourceOfType });
+  expect.extend({ toHaveRootModuleResourceOfType });
 }
