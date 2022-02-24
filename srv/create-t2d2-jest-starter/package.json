@@ -7,7 +7,8 @@
   },
   "main": "index.mjs",
   "scripts": {
-    "test": "echo 'no test here lel'"
+    "test": "echo 'no test here lel'",
+    "clean-up": "cat .gitignore | xargs rm -rf"
   },
   "repository": {
     "type": "git",

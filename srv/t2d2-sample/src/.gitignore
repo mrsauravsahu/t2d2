@@ -1,0 +1,7 @@
+.terraform
+*.tfstate
+*.tfstate.tmp
+*.tfstate.backup
+*plan.json
+
+output.txt

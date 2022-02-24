@@ -1,0 +1,22 @@
+{
+  "name": "t2d2-testing",
+  "version": "0.1.0-alpha.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "t2d2": "file:../t2d2/",
+    "t2d2-jest-matchers": "file:../t2d2-jest-matchers/",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.18",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
