@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "t2d2": "file:../t2d2/",
-    "t2d2-jest-matchers": "file:../t2d2-jest-matchers/",
+    "@t2d2/core": "file:../t2d2/",
+    "@t2d2/jest-matchers": "file:../t2d2-jest-matchers/",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.18",
     "jest": "^27.5.1",
