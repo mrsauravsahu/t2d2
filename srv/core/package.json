@@ -1,5 +1,5 @@
 {
-  "name": "t2d2",
+  "name": "@t2d2/core",
   "version": "0.1.0-alpha.0",
   "description": "Terraform Test Driven Development",
   "main": "dist/index.js",

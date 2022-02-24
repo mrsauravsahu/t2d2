@@ -1,5 +1,5 @@
 {
-  "name": "t2d2-testing",
+  "name": "@t2d2/testing",
   "version": "0.1.0-alpha.0",
   "description": "",
   "main": "index.js",
