@@ -1,4 +1,4 @@
-import * as t2d2 from 't2d2';
+import * as t2d2 from '@t2d2/core';
 
 describe("resources", () => {
   let profile: t2d2.Profile;
@@ -7,7 +7,7 @@ describe("resources", () => {
   beforeAll(async () => {
     profile = await t2d2.init({
       profileName: 'resources',
-      workspaceDir: '../t2d2-tf',
+      workspaceDir: './src',
     })
 
     plan = await t2d2.plan(profile, { 
