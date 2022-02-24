@@ -1,0 +1,28 @@
+{
+  "name": "@t2d2/create-jest-starter",
+  "version": "0.1.0-alpha.0",
+  "description": "Jest Project Starter for T2D2",
+  "bin": {
+    "create-t2d2-jest-starter": "index.mjs"
+  },
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo 'no test here lel'",
+    "clean-up": "cat .gitignore | xargs rm -rf"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrsauravsahu/t2d2.git"
+  },
+  "keywords": [
+    "template",
+    "t2d2",
+    "jest"
+  ],
+  "author": "Sahu, S <mrsauravsahu@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrsauravsahu/t2d2/issues"
+  },
+  "homepage": "https://github.com/mrsauravsahu/t2d2#readme"
+}
