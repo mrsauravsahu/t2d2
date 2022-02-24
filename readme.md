@@ -8,7 +8,7 @@ Testing Terraform code currently requires knowledge of a new set of tools which 
 
 ## How?
 
-T2D2 helps bridge this gap by allowing you write your IaC tests with familiar JavaScript testing frameworks like [Jest](https://jestjs.io/), [Mocha](https://mochajs.org), [UVU](https://github.com/lukeed/uvu) etc.,.
+t2d2 helps bridge this gap by allowing you write your IaC tests with familiar JavaScript testing frameworks like [Jest](https://jestjs.io/), [Mocha](https://mochajs.org), [UVU](https://github.com/lukeed/uvu) etc.,.
 
 ## Getting Started
 
