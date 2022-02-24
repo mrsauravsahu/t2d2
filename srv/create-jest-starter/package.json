@@ -1,14 +1,15 @@
 {
   "name": "@t2d2/create-jest-starter",
   "version": "0.1.0-alpha.0",
-  "description": "Jest Project Starter for T2D2",
+  "description": "Jest Project Starter for t2d2",
   "bin": {
     "create-t2d2-jest-starter": "index.mjs"
   },
   "main": "index.mjs",
   "scripts": {
     "test": "echo 'no test here lel'",
-    "clean-up": "cat .gitignore | xargs rm -rf"
+    "clean": "cat .gitignore | xargs rm -rf",
+    "deploy": "npm run clean && cp ../../readme.md . && npm publish --access public"
   },
   "repository": {
     "type": "git",
