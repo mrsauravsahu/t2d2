@@ -1,12 +1,13 @@
 {
   "name": "@t2d2/core",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Terraform Test Driven Development",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "dev": "nodemon",
-    "build": "tsc --outDir dist"
+    "build": "tsc --outDir dist",
+    "deploy": "cp ../../readme.md . && npm publish --access public"
   },
   "repository": {
     "type": "git",
