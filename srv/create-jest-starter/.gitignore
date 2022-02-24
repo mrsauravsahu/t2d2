@@ -2,3 +2,4 @@ template/tf/.terraform
 template/tf/.terraform.lock.hcl
 template/tf/plan.json
 template/tf/terraform.tfstate.tmp
+readme.md
