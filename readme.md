@@ -12,13 +12,43 @@ T2D2 helps bridge this gap by allowing you write your IaC tests with familiar Ja
 
 ## Getting Started
 
-- Create a starter jest project inside your Terraform workspace
+1. Create a starter jest project.
+You can explore the sample test in [resources.ts](srv/test-template/__tests__/resources.ts)
 
 ```bash
-mkdir tests
-cd tests
-npm init t2d2-jest-starter
+mkdir my-infra-project
+cd my-infra-project
+npm init @t2d2/jest-starter
 ```
 
-- Start writing your tests.
-- TODO (refer [resources.ts](./playground/t2d2-testing/__tests__/resources.ts) for now.)
+2. Customize the terraform workspace path in your tests' `beforeAll` hook, if required.
+
+```typescript
+...
+
+profile = await t2d2.init({
+  profileName: 'resources',
+  workspaceDir: './tf', # <--
+})
+
+...
+```
+
+3. Start your TDD cycles.
+
+# Packages
+
+## @t2d2/core
+
+Main package in the t2d2 Suite, helps with:
+- Setting up the Terraform workspace through code
+- Functions to write unit tests
+
+## @t2d2/create-jest-starter
+
+npm init package to setup a jest test project with t2d2
+
+## @t2d2/jest-matchers
+
+t2d2 core test helpers, supercharged as jest custom matchers
+
