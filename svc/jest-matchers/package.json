@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/mrsauravsahu/t2d2#readme",
   "dependencies": {
-    "@t2d2/core": "^0.1.0-alpha.0"
+    "@t2d2/core": "^0.1.0-alpha.3"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
