@@ -3,20 +3,23 @@ import { TFModule } from "./shapes/module";
 
 export class ParsedTFPlan {
   constructor(
-    private formatVersion: string,
-    private terraformVersion: string,
-    private rootModuleResources: TFResource[],
-    private childModules: TFModule[],
-    private variables: Map<string, { value: string }>,
-    private raw: string) { }
+    private _formatVersion: string,
+    private _tfVersion: string,
+    private _rootModuleResources: TFResource[],
+    private _childModules: TFModule[],
+    private _variables: Map<string, { value: string }>,
+    private _raw: string) { }
 
   private get resources(): TFResource[] {
     return [
-      ...this.rootModuleResources,
-      ...this.childModules.map(module => module.resources).flat()
+      ...this._rootModuleResources,
+      ...this._childModules.map(module => module.resources).flat()
     ]
   }
-  public get rawState() { return this.raw; }
+
+  public get rawState() { return this._raw; }
+  public get formatVersion(): string { return this._formatVersion }
+  public get tfVersion(): string { return this._tfVersion }
 
   public getResourceByAddress(address: string): TFResource | null {
     const matchedResources = this.resources.filter(r => r.address === address)
@@ -32,7 +35,7 @@ export class ParsedTFPlan {
   }
 
   public getRootModuleResourceOfType(type: string): TFResource | null {
-    const matchedResources = this.rootModuleResources.filter(r => r.type === type)
+    const matchedResources = this._rootModuleResources.filter(r => r.type === type)
     let result: TFResource | null = null;
 
     if (matchedResources.length > 0) result = matchedResources[0]
