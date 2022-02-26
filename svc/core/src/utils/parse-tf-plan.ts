@@ -5,7 +5,7 @@ import { TFModule } from '../shapes/module';
 import { TFResource } from '../shapes/resource';
 
 // TODO: parse differently based on format_version
-export const parsePlan = async (rawTFStateJsonString: string): Promise<ParsedTFPlan> => {
+export const parseTFPlan = async (rawTFStateJsonString: string): Promise<ParsedTFPlan> => {
     const jqOptions = { input: 'string', output: 'json' }
 
     const versionData = await jq.run(
