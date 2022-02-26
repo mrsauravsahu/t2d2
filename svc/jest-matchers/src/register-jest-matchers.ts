@@ -1,4 +1,4 @@
-import { ParsedTFPlan } from "t2d2";
+import { ParsedTFPlan } from "@t2d2/core";
 
 const toHaveRootModuleResourceOfType = (plan: ParsedTFPlan, type: string): jest.CustomMatcherResult => {
   try {
