@@ -1,23 +1,26 @@
-import { Resource, TFPlan } from "./shapes/tf-plan";
+import { TFResource } from "./shapes/resource";
+import { TFModule } from "./shapes/module";
 
 export class ParsedTFPlan {
   constructor(
-    private rootModuleResources: Resource[],
-    private childModuleResources: Resource[],
-    private raw: string) {
-  }
+    private formatVersion: string,
+    private terraformVersion: string,
+    private rootModuleResources: TFResource[],
+    private childModules: TFModule[],
+    private variables: Map<string, { value: string }>,
+    private raw: string) { }
 
-  private get resources() {
+  private get resources(): TFResource[] {
     return [
       ...this.rootModuleResources,
-      ...this.childModuleResources
+      ...this.childModules.map(module => module.resources).flat()
     ]
   }
   public get rawState() { return this.raw; }
 
-  public getResourceByAddress(address: string): Resource | null {
+  public getResourceByAddress(address: string): TFResource | null {
     const matchedResources = this.resources.filter(r => r.address === address)
-    let result: Resource | null = null;
+    let result: TFResource | null = null;
 
     if (matchedResources.length > 0) result = matchedResources[0]
     return result
@@ -28,9 +31,9 @@ export class ParsedTFPlan {
     if (resource === null) throw new Error(`Resource with address '${address}' does not exist.`)
   }
 
-  public getRootModuleResourceOfType(type: string): Resource | null {
+  public getRootModuleResourceOfType(type: string): TFResource | null {
     const matchedResources = this.rootModuleResources.filter(r => r.type === type)
-    let result: Resource | null = null;
+    let result: TFResource | null = null;
 
     if (matchedResources.length > 0) result = matchedResources[0]
     return result
