@@ -4,7 +4,7 @@ import { execa } from 'execa';
 import { PlanOptions } from './shapes/plan-options';
 import { Profile } from './shapes/profile';
 import { ParsedTFPlan } from './parsed-tf-plan';
-import { parsePlan } from './utils/parse-plan';
+import { parseTFPlan } from './utils/parse-tf-plan';
 
 export const plan = async (profile: Profile, options: PlanOptions): Promise<ParsedTFPlan> => {
   var planArgs: string[] = [
@@ -37,6 +37,6 @@ export const plan = async (profile: Profile, options: PlanOptions): Promise<Pars
   const tfPlanJsonPath = path.join(profile.workspaceDir, 'plan.json');
   await writeFile(tfPlanJsonPath, show.stdout, { encoding: 'utf-8' })
 
-  const parsedPlan = await parsePlan(show.stdout)
+  const parsedPlan = await parseTFPlan(show.stdout)
   return parsedPlan
 }

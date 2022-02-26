@@ -1,23 +1,29 @@
-import { Resource, TFPlan } from "./shapes/tf-plan";
+import { TFResource } from "./shapes/resource";
+import { TFModule } from "./shapes/module";
 
 export class ParsedTFPlan {
   constructor(
-    private rootModuleResources: Resource[],
-    private childModuleResources: Resource[],
-    private raw: string) {
-  }
+    private _formatVersion: string,
+    private _tfVersion: string,
+    private _rootModuleResources: TFResource[],
+    private _childModules: TFModule[],
+    private _variables: Map<string, { value: string }>,
+    private _raw: string) { }
 
-  private get resources() {
+  public get resources(): TFResource[] {
     return [
-      ...this.rootModuleResources,
-      ...this.childModuleResources
+      ...this._rootModuleResources,
+      ...this._childModules.map(module => module.resources).flat()
     ]
   }
-  public get rawState() { return this.raw; }
 
-  public getResourceByAddress(address: string): Resource | null {
+  public get rawState() { return this._raw; }
+  public get formatVersion(): string { return this._formatVersion }
+  public get tfVersion(): string { return this._tfVersion }
+
+  public getResourceByAddress(address: string): TFResource | null {
     const matchedResources = this.resources.filter(r => r.address === address)
-    let result: Resource | null = null;
+    let result: TFResource | null = null;
 
     if (matchedResources.length > 0) result = matchedResources[0]
     return result
@@ -28,9 +34,9 @@ export class ParsedTFPlan {
     if (resource === null) throw new Error(`Resource with address '${address}' does not exist.`)
   }
 
-  public getRootModuleResourceOfType(type: string): Resource | null {
-    const matchedResources = this.rootModuleResources.filter(r => r.type === type)
-    let result: Resource | null = null;
+  public getRootModuleResourceOfType(type: string): TFResource | null {
+    const matchedResources = this._rootModuleResources.filter(r => r.type === type)
+    let result: TFResource | null = null;
 
     if (matchedResources.length > 0) result = matchedResources[0]
     return result
