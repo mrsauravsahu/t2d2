@@ -1,8 +1,8 @@
 import { ParsedTFPlan } from "../../src"
-import { parsePlan } from "../../src/utils/parse-plan"
+import { parseTFPlan } from "../../src/utils/parse-tf-plan"
 
 describe('parsePlan', () => {
   test('should return an Instance of ParsedTFPlan', () => {
-    expect(parsePlan('{}')).resolves.toBeInstanceOf(ParsedTFPlan)
+    expect(parseTFPlan('{}')).resolves.toBeInstanceOf(ParsedTFPlan)
   })
 })
