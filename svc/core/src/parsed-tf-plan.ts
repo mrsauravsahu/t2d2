@@ -10,7 +10,7 @@ export class ParsedTFPlan {
     private _variables: Map<string, { value: string }>,
     private _raw: string) { }
 
-  private get resources(): TFResource[] {
+  public get resources(): TFResource[] {
     return [
       ...this._rootModuleResources,
       ...this._childModules.map(module => module.resources).flat()
