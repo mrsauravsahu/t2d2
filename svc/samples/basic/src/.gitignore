@@ -4,4 +4,4 @@
 *.tfstate.backup
 *plan.json
 
-output.txt
+outputs

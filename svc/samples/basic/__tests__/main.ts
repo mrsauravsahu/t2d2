@@ -1,12 +1,12 @@
 import * as t2d2 from '@t2d2/core';
 
-describe("resources", () => {
+describe("main.tf", () => {
   let profile: t2d2.Profile;
   let plan: t2d2.ParsedTFPlan;
 
   beforeAll(async () => {
     profile = await t2d2.init({
-      profileName: 'resources',
+      profileName: 'main',
       workspaceDir: './src',
     })
 
@@ -36,6 +36,6 @@ describe("resources", () => {
     // we move to any type. 
     // Note that this might break in different terraform versions
     const resource = fileResource as any
-    expect(resource.values.content).toEqual("1 1 2 3 5 8 13 21")
+    expect(resource.values.content).toEqual("0 1 1 2 3 5 8 13 21")
   })
 })

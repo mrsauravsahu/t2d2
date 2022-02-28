@@ -1,49 +1,38 @@
 import { TFResource } from "./shapes/resource";
 import { TFModule } from "./shapes/module";
+import { IParsedTFPlan } from "./shapes/i-parsed-tf-plan";
 
 export class ParsedTFPlan {
-  constructor(
-    private _formatVersion: string,
-    private _tfVersion: string,
-    private _rootModuleResources: TFResource[],
-    private _childModules: TFModule[],
-    private _variables: Map<string, { value: string }>,
-    private _raw: string) { }
+  constructor(private parsedPlan: IParsedTFPlan) { }
 
   public get resources(): TFResource[] {
     return [
-      ...this._rootModuleResources,
-      ...this._childModules.map(module => module.resources).flat()
+      ...this.parsedPlan.rootModuleResources,
+      ...this.parsedPlan.childModules.map(m => m.resources).flat()
     ]
   }
 
-  public get rawState() { return this._raw; }
-  public get formatVersion(): string { return this._formatVersion }
-  public get tfVersion(): string { return this._tfVersion }
+  public get rawState() { return this.parsedPlan.rawTFStateJsonString; }
+  public get formatVersion(): string { return this.parsedPlan.formatVersion }
+  public get tfVersion(): string { return this.parsedPlan.terraformVersion }
 
-  public getResourceByAddress(address: string): TFResource | null {
+  public getResourceByAddress(address: string): TFResource {
     const matchedResources = this.resources.filter(r => r.address === address)
-    let result: TFResource | null = null;
-
-    if (matchedResources.length > 0) result = matchedResources[0]
-    return result
+    if (matchedResources.length === 0)
+      throw new Error(`Resource with address '${address}' does not exist.`)
+    return matchedResources[0]
   }
 
-  public hasResourceByAddress(address: string): void {
-    const resource = this.getResourceByAddress(address)
-    if (resource === null) throw new Error(`Resource with address '${address}' does not exist.`)
+  public getRootModuleResourceOfType(type: string): TFResource {
+    const matchedResources = this.parsedPlan.rootModuleResources.filter(r => r.type === type)
+    if (matchedResources.length === 0)
+      throw new Error(`Resource of type '${type}' does not exist in the root module.`)
+    return matchedResources[0]
   }
 
-  public getRootModuleResourceOfType(type: string): TFResource | null {
-    const matchedResources = this._rootModuleResources.filter(r => r.type === type)
-    let result: TFResource | null = null;
-
-    if (matchedResources.length > 0) result = matchedResources[0]
-    return result
-  }
-
-  public hasRootModuleResourceOfType(type: string): void {
-    const rootModuleResource = this.getRootModuleResourceOfType(type)
-    if (rootModuleResource === null) throw new Error(`Resource of type '${type}' does not exist in the root module.`)
+  public getModuleByAddress(address: string): TFModule {
+    const matchedModules = this.parsedPlan.childModules.filter(m => m.address === address)
+    if (matchedModules.length === 0) throw new Error(`Module at address '${address}' does not exist.`)
+    return  matchedModules[0]
   }
 }

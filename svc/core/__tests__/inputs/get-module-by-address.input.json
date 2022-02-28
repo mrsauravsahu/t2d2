@@ -1,0 +1,163 @@
+{
+  "format_version": "0.1",
+  "terraform_version": "0.14.7",
+  "variables": {
+    "wait_time": {
+      "value": "1s"
+    }
+  },
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "time_sleep.wait_some_time",
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "wait_some_time",
+          "provider_name": "registry.terraform.io/hashicorp/time",
+          "schema_version": 0,
+          "values": {
+            "create_duration": "1s",
+            "destroy_duration": null,
+            "triggers": null
+          }
+        }
+      ],
+      "child_modules": [
+        {
+          "resources": [
+            {
+              "address": "module.files.local_file.sample",
+              "mode": "managed",
+              "type": "local_file",
+              "name": "sample",
+              "provider_name": "registry.terraform.io/hashicorp/local",
+              "schema_version": 0,
+              "values": {
+                "content": "0 1 1 2 3 5 8 13 21",
+                "content_base64": null,
+                "directory_permission": "0777",
+                "file_permission": "0777",
+                "filename": "output.txt",
+                "sensitive_content": null,
+                "source": null
+              }
+            }
+          ],
+          "address": "module.files"
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "module.files.local_file.sample",
+      "module_address": "module.files",
+      "mode": "managed",
+      "type": "local_file",
+      "name": "sample",
+      "provider_name": "registry.terraform.io/hashicorp/local",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "content": "0 1 1 2 3 5 8 13 21",
+          "content_base64": null,
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "output.txt",
+          "sensitive_content": null,
+          "source": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    },
+    {
+      "address": "time_sleep.wait_some_time",
+      "mode": "managed",
+      "type": "time_sleep",
+      "name": "wait_some_time",
+      "provider_name": "registry.terraform.io/hashicorp/time",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "create_duration": "1s",
+          "destroy_duration": null,
+          "triggers": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "local": {
+        "name": "local",
+        "version_constraint": "2.1.0"
+      },
+      "time": {
+        "name": "time",
+        "version_constraint": "0.7.2"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "time_sleep.wait_some_time",
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "wait_some_time",
+          "provider_config_key": "time",
+          "expressions": {
+            "create_duration": {
+              "references": [
+                "var.wait_time"
+              ]
+            }
+          },
+          "schema_version": 0
+        }
+      ],
+      "module_calls": {
+        "files": {
+          "source": "./modules/files",
+          "module": {
+            "resources": [
+              {
+                "address": "local_file.sample",
+                "mode": "managed",
+                "type": "local_file",
+                "name": "sample",
+                "provider_config_key": "files:local",
+                "expressions": {
+                  "content": {
+                    "constant_value": "0 1 1 2 3 5 8 13 21"
+                  },
+                  "filename": {
+                    "constant_value": "output.txt"
+                  }
+                },
+                "schema_version": 0
+              }
+            ]
+          }
+        }
+      },
+      "variables": {
+        "wait_time": {
+          "default": "5s",
+          "description": "Wait time"
+        }
+      }
+    }
+  }
+}
