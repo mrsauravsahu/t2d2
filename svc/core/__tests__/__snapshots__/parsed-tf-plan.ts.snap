@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ParsedTFPlan modules getModuleByAddress should match module snapshot if exists 1`] = `
+exports[`ParsedTFPlan getModuleByAddress should match module snapshot if exists 1`] = `
 Object {
   "address": "module.files",
   "resources": Array [
@@ -22,5 +22,37 @@ Object {
       },
     },
   ],
+}
+`;
+
+exports[`ParsedTFPlan getResourceByAddress should match resource snapshot if exists 1`] = `
+Object {
+  "address": "time_sleep.wait_some_time",
+  "mode": "managed",
+  "name": "wait_some_time",
+  "provider_name": "registry.terraform.io/hashicorp/time",
+  "schema_version": 0,
+  "type": "time_sleep",
+  "values": Object {
+    "create_duration": "1s",
+    "destroy_duration": null,
+    "triggers": null,
+  },
+}
+`;
+
+exports[`ParsedTFPlan getRootModuleResourceOfType should match snapshot if resource of type exists 1`] = `
+Object {
+  "address": "time_sleep.wait_some_time",
+  "mode": "managed",
+  "name": "wait_some_time",
+  "provider_name": "registry.terraform.io/hashicorp/time",
+  "schema_version": 0,
+  "type": "time_sleep",
+  "values": Object {
+    "create_duration": "1s",
+    "destroy_duration": null,
+    "triggers": null,
+  },
 }
 `;

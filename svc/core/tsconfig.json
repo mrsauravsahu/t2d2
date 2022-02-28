@@ -2,7 +2,6 @@
   "exclude": [
     "dist",
     "playground",
-    "__tests__",
     "jest.*.ts"
   ],
   "compilerOptions": {
