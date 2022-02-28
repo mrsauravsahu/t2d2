@@ -34,7 +34,7 @@
               "provider_name": "registry.terraform.io/hashicorp/local",
               "schema_version": 0,
               "values": {
-                "content": "1 1 2 3 5 8 13 21",
+                "content": "0 1 1 2 3 5 8 13 21",
                 "content_base64": null,
                 "directory_permission": "0777",
                 "file_permission": "0777",
@@ -63,7 +63,7 @@
         ],
         "before": null,
         "after": {
-          "content": "1 1 2 3 5 8 13 21",
+          "content": "0 1 1 2 3 5 8 13 21",
           "content_base64": null,
           "directory_permission": "0777",
           "file_permission": "0777",
@@ -140,7 +140,7 @@
                 "provider_config_key": "files:local",
                 "expressions": {
                   "content": {
-                    "constant_value": "1 1 2 3 5 8 13 21"
+                    "constant_value": "0 1 1 2 3 5 8 13 21"
                   },
                   "filename": {
                     "constant_value": "output.txt"
