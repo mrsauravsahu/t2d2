@@ -1,7 +1,9 @@
 {
   "exclude": [
     "dist",
-    "playground"
+    "playground",
+    "__tests__",
+    "jest.*.ts"
   ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
