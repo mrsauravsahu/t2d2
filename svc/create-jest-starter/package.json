@@ -1,6 +1,6 @@
 {
   "name": "@t2d2/create-jest-starter",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0",
   "description": "Jest Project Starter for t2d2",
   "bin": {
     "create-t2d2-jest-starter": "index.mjs"

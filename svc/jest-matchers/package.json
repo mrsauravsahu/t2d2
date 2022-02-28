@@ -1,6 +1,6 @@
 {
   "name": "@t2d2/jest-matchers",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0",
   "description": "Custom Jest Matchers for t2d2",
   "main": "dist/index.js",
   "scripts": {
