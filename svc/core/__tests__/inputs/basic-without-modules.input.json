@@ -1,0 +1,88 @@
+{
+  "format_version": "0.1",
+  "terraform_version": "0.14.7",
+  "variables": {
+    "wait_time": {
+      "value": "1s"
+    }
+  },
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "time_sleep.wait_some_time",
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "wait_some_time",
+          "provider_name": "registry.terraform.io/hashicorp/time",
+          "schema_version": 0,
+          "values": {
+            "create_duration": "1s",
+            "destroy_duration": null,
+            "triggers": null
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "time_sleep.wait_some_time",
+      "mode": "managed",
+      "type": "time_sleep",
+      "name": "wait_some_time",
+      "provider_name": "registry.terraform.io/hashicorp/time",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "create_duration": "1s",
+          "destroy_duration": null,
+          "triggers": null
+        },
+        "after_unknown": {
+          "id": true
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "local": {
+        "name": "local",
+        "version_constraint": "2.1.0"
+      },
+      "time": {
+        "name": "time",
+        "version_constraint": "0.7.2"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "time_sleep.wait_some_time",
+          "mode": "managed",
+          "type": "time_sleep",
+          "name": "wait_some_time",
+          "provider_config_key": "time",
+          "expressions": {
+            "create_duration": {
+              "references": [
+                "var.wait_time"
+              ]
+            }
+          },
+          "schema_version": 0
+        }
+      ],
+      "variables": {
+        "wait_time": {
+          "default": "0s",
+          "description": "Time to wait before performing awesomeness"
+        }
+      }
+    }
+  }
+}
