@@ -1,6 +1,6 @@
 {
   "name": "@t2d2/jest-matchers",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Custom Jest Matchers for t2d2",
   "main": "dist/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/mrsauravsahu/t2d2#readme",
   "dependencies": {
-    "@t2d2/core": "^0.1.0-alpha.3"
+    "@t2d2/core": "^0.1.0-alpha.5"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
