@@ -1,6 +1,5 @@
 import * as fs from 'fs/promises'
 import * as path from 'path'
-import { ParsedTFPlan } from "../../src"
 import { parseTFPlan } from "../../src/utils/parse-tf-plan"
 
 describe('parsePlan', () => {

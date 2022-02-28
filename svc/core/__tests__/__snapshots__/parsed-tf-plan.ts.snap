@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ParsedTFPlan getModuleByAddress should match module snapshot if exists 1`] = `
+Object {
+  "address": "module.files",
+  "resources": Array [
+    Object {
+      "address": "module.files.local_file.sample",
+      "mode": "managed",
+      "name": "sample",
+      "provider_name": "registry.terraform.io/hashicorp/local",
+      "schema_version": 0,
+      "type": "local_file",
+      "values": Object {
+        "content": "1 1 2 3 5 8 13 21",
+        "content_base64": null,
+        "directory_permission": "0777",
+        "file_permission": "0777",
+        "filename": "output.txt",
+        "sensitive_content": null,
+        "source": null,
+      },
+    },
+  ],
+}
+`;
