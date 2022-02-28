@@ -32,7 +32,7 @@ export class ParsedTFPlan {
 
   public getModuleByAddress(address: string): TFModule {
     const matchedModules = this.parsedPlan.childModules.filter(m => m.address === address)
-    if (matchedModules.length === 0) throw `Module at address '${address}' does not exist.`
+    if (matchedModules.length === 0) throw new Error(`Module at address '${address}' does not exist.`)
     return  matchedModules[0]
   }
 }
