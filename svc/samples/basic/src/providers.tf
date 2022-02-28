@@ -1,13 +1,16 @@
 terraform {
   required_providers {
-    time = {
-      version = "0.7.2"
-    }
     local = {
+      source = "hashicorp/local"
       version = "2.1.0"
+    }
+
+    time = {
+      source = "hashicorp/time"
+      version = "0.7.2"
     }
   }
 }
 
-provider "time" { }
 provider "local" { }
+provider "time" { }
