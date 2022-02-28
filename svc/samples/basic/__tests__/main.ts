@@ -22,6 +22,10 @@ describe("main.tf", () => {
     expect(plan).toHaveRootModuleResourceOfType('time_sleep')
   })
 
+  test("should contain files module", () => {
+    expect(plan.getModuleByAddress("module.files"));
+  })
+
   test("sample local_file should be created in a module", () => {
     // Check if there are any resources with the given address
     // Searches across root module + all child modules
