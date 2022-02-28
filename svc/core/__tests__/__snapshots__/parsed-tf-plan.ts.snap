@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ParsedTFPlan getModuleByAddress should match module snapshot if exists 1`] = `
+exports[`ParsedTFPlan modules getModuleByAddress should match module snapshot if exists 1`] = `
 Object {
   "address": "module.files",
   "resources": Array [

@@ -16,37 +16,23 @@ export class ParsedTFPlan {
   public get formatVersion(): string { return this.parsedPlan.formatVersion }
   public get tfVersion(): string { return this.parsedPlan.terraformVersion }
 
-  public getResourceByAddress(address: string): TFResource | null {
+  public getResourceByAddress(address: string): TFResource {
     const matchedResources = this.resources.filter(r => r.address === address)
-    let result: TFResource | null = null;
-
-    if (matchedResources.length > 0) result = matchedResources[0]
-    return result
+    if (matchedResources.length === 0)
+      throw new Error(`Resource with address '${address}' does not exist.`)
+    return matchedResources[0]
   }
 
-  public hasResourceByAddress(address: string): void {
-    const resource = this.getResourceByAddress(address)
-    if (resource === null) throw new Error(`Resource with address '${address}' does not exist.`)
-  }
-
-  public getRootModuleResourceOfType(type: string): TFResource | null {
+  public getRootModuleResourceOfType(type: string): TFResource {
     const matchedResources = this.parsedPlan.rootModuleResources.filter(r => r.type === type)
-    let result: TFResource | null = null;
-
-    if (matchedResources.length > 0) result = matchedResources[0]
-    return result
+    if (matchedResources.length === 0)
+      throw new Error(`Resource of type '${type}' does not exist in the root module.`)
+    return matchedResources[0]
   }
 
-  public hasRootModuleResourceOfType(type: string): void {
-    const rootModuleResource = this.getRootModuleResourceOfType(type)
-    if (rootModuleResource === null) throw new Error(`Resource of type '${type}' does not exist in the root module.`)
-  }
-
-  public getModuleByAddress(address: string) {
+  public getModuleByAddress(address: string): TFModule {
     const matchedModules = this.parsedPlan.childModules.filter(m => m.address === address)
-
-    let result: TFModule | null = null
-    if (matchedModules.length > 0) result = matchedModules[0]
-    return result
+    if (matchedModules.length === 0) throw `Module at address '${address}' does not exist.`
+    return  matchedModules[0]
   }
 }
