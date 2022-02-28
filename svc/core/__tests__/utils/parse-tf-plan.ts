@@ -1,11 +1,9 @@
+import * as fs from 'fs/promises'
+import * as path from 'path'
 import { ParsedTFPlan } from "../../src"
 import { parseTFPlan } from "../../src/utils/parse-tf-plan"
 
 describe('parsePlan', () => {
-  test('should return an Instance of ParsedTFPlan', () => {
-    expect(parseTFPlan('{}')).resolves.toBeInstanceOf(ParsedTFPlan)
-  })
-
   test('should pick terraform plan version', async () => {
     const input = JSON.stringify({
       format_version: '1.0.0'
@@ -21,7 +19,7 @@ describe('parsePlan', () => {
     })
 
     const parsedTFPlan = await parseTFPlan(input)
-    expect(parsedTFPlan.tfVersion).toEqual("1.1.6");
+    expect(parsedTFPlan.terraformVersion).toEqual("1.1.6");
   })
 
   test('should pick root module resources', async () => {
@@ -50,6 +48,16 @@ describe('parsePlan', () => {
     })
 
     const parsedTFPlan = await parseTFPlan(input)
-    expect(parsedTFPlan.resources.length).toBe(1)
+    expect(parsedTFPlan.rootModuleResources.length).toBe(1)
+  })
+
+  test('should pick child modules', async () => {
+    const inputString = await fs.readFile(
+      path.resolve(__dirname, '../inputs/get-module-by-address.input.json'), {
+      encoding: 'utf-8'
+    })
+
+    const plan = await parseTFPlan(inputString)
+    expect(plan.childModules.length).toEqual(1)
   })
 })

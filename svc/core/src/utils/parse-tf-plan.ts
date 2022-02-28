@@ -1,11 +1,11 @@
 import * as jq from 'node-jq'
 
-import { ParsedTFPlan } from "../parsed-tf-plan";
+import { IParsedTFPlan } from "../shapes/i-parsed-tf-plan";
 import { TFModule } from '../shapes/module';
 import { TFResource } from '../shapes/resource';
 
 // TODO: parse differently based on format_version
-export const parseTFPlan = async (rawTFStateJsonString: string): Promise<ParsedTFPlan> => {
+export const parseTFPlan = async (rawTFStateJsonString: string): Promise<IParsedTFPlan> => {
     const jqOptions = { input: 'string', output: 'json' }
 
     const versionData = await jq.run(
@@ -22,18 +22,18 @@ export const parseTFPlan = async (rawTFStateJsonString: string): Promise<ParsedT
         rawTFStateJsonString,
         jqOptions);
 
-    const modules: unknown = await jq.run(
+    const childModules: unknown = await jq.run(
         '[(.planned_values.root_module.child_modules // [])[]]',
         rawTFStateJsonString,
         jqOptions);
 
-    return new ParsedTFPlan(
-        (versionData as any).formatVersion,
-        (versionData as any).terraformVersion,
-        rootModuleResources as unknown as TFResource[],
-        modules as unknown as TFModule[],
+    return {
+        formatVersion: (versionData as any).formatVersion,
+        terraformVersion: (versionData as any).terraformVersion,
+        rootModuleResources: rootModuleResources as unknown as TFResource[],
+        childModules: childModules as unknown as TFModule[],
         // TODO
-        new Map<string, { value: string }>(),
+        variables: new Map<string, { value: string }>(),
         rawTFStateJsonString
-    );
+    }
 }

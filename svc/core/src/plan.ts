@@ -37,6 +37,7 @@ export const plan = async (profile: Profile, options: PlanOptions): Promise<Pars
   const tfPlanJsonPath = path.join(profile.workspaceDir, 'plan.json');
   await writeFile(tfPlanJsonPath, show.stdout, { encoding: 'utf-8' })
 
-  const parsedPlan = await parseTFPlan(show.stdout)
+  const parsedPlanContract = await parseTFPlan(show.stdout)
+  const parsedPlan = new ParsedTFPlan(parsedPlanContract)
   return parsedPlan
 }
