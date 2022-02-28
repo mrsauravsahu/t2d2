@@ -10,8 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
-    "@t2d2/core": "^0.1.0-alpha.1",
-    "@t2d2/jest-matchers": "^0.1.0-alpha.0",
+    "@t2d2/core": "^0.1.0-alpha.4",
+    "@t2d2/jest-matchers": "^0.1.0-alpha.1",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.18",
     "jest": "^27.5.1",
