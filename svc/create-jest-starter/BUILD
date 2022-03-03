@@ -1,7 +1,8 @@
-sh_cmd(
-  name = 'test',
-  srcs = glob(['*'], ['node_modules', 'BUILD']),
-  cmd = 'npm --prefix svc/create-jest-starter ci && npm --prefix svc/create-jest-starter t',
+gentest(
+  name="test",
+  data=glob(["*"], ["node_modules"]),
+  test_cmd="cd svc/create-jest-starter && npm ci && npm t",
+  no_test_output=True
 )
 
 sh_cmd(
