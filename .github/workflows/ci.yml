@@ -50,7 +50,7 @@ jobs:
 
       - name: run tests
         if: steps.check_targets.outputs.SERVICES_SINGLE_LINE != ''
-        run: plz test `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:tests|g'`
+        run: plz test `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:test|g'`
 
       - name: build targets
         if: steps.check_targets.outputs.SERVICES != ''
