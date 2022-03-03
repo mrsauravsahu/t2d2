@@ -54,4 +54,4 @@ jobs:
 
       - name: build targets
         if: steps.check_targets.outputs.SERVICES != ''
-        run: plz run parallel `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z]*|&:build|g'`
+        run: plz run parallel `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:build|g'`
