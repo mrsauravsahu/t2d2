@@ -48,9 +48,9 @@ jobs:
       #       PLZ_OVERRIDES=buildenv.SECRET_SERVICE_NAME:"$i" plz run $i:lint
       #     done
 
-      # - name: run tests
-      #   if: steps.check_targets.outputs.SERVICES_SINGLE_LINE != ''
-      #   run: plz test `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z]*|&/tests|g'`
+      - name: run tests
+        if: steps.check_targets.outputs.SERVICES_SINGLE_LINE != ''
+        run: plz test `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:tests|g'`
 
       - name: build targets
         if: steps.check_targets.outputs.SERVICES != ''
