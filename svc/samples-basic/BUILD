@@ -1,7 +1,7 @@
 sh_cmd(
-  name = 'build',
+  name = "build",
   srcs = [],
-  cmd = 'echo "no build step"',
+  cmd = "echo no build step",
 )
 
 gentest(
