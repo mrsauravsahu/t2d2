@@ -1,3 +1,9 @@
+tarball(
+  name = 'build',
+  srcs = glob(['src/**/*.tf']),
+  out = "samples-basic.tar.gz"
+)
+
 gentest(
   name = "test",
   data = glob(["*"], ["node_modules"]),
