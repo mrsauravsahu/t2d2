@@ -53,3 +53,4 @@ jobs:
           branch: 'chore/bump-packages'
           delete-branch: true
           base: ${{ env.MAIN_BRANCH }}
+          title: "Chore: Changes from Workflow Run in '${{ github.event.inputs.mode }}' Mode"
