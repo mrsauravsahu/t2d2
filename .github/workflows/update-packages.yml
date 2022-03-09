@@ -10,10 +10,10 @@ on:
       mode:
         description: 'Update packages or work on audit fixes'
         required: false
-        default: 'update' 
+        default: 'bump' 
         type: choice
         options:
-        - update
+        - bump
         - audit
 
 jobs:
