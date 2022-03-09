@@ -16,3 +16,9 @@ sh_cmd(
   srcs = glob(["*"], ["node_modules", "BUILD"]),
   cmd = "npm --prefix svc/create-jest-starter update",
 )
+
+sh_cmd(
+  name = "audit",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/core audit fix",
+)

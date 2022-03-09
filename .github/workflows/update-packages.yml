@@ -4,7 +4,17 @@ env:
   MAIN_BRANCH: main
   NODE_VERSION: 16.14.0
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Update packages or work on audit fixes'
+        required: false
+        default: 'update' 
+        type: choice
+        options:
+        - update
+        - audit
 
 jobs:
   update_packages:
@@ -34,7 +44,7 @@ jobs:
           echo "::set-output name=SERVICES_SINGLE_LINE::$SERVICES_SINGLE_LINE"
 
       - name: bump packages
-        run: plz run parallel `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:bump|g'`
+        run: plz run parallel `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed "s|//svc/[a-z\-]*|&:${{ github.event.inputs.mode }}|g"`
 
       - name: create pull request
         uses: peter-evans/create-pull-request@v3

@@ -16,3 +16,9 @@ sh_cmd(
   srcs = glob(["*"], ["node_modules", "BUILD"]),
   cmd = "npm --prefix svc/samples-basic update",
 )
+
+sh_cmd(
+  name = "audit",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/samples-basic audit fix",
+)
