@@ -1,7 +1,7 @@
-tarball(
+sh_cmd(
   name = 'build',
-  srcs = glob(['src/**/*.tf']),
-  out = "samples-basic.tar.gz"
+  srcs = [],
+  cmd = 'echo "no build step"',
 )
 
 gentest(
