@@ -6,7 +6,7 @@ gentest(
 )
 
 sh_cmd(
-  name = 'build',
-  srcs = glob(['*'], ['node_modules', 'BUILD']),
-  cmd = 'echo done',
+  name = "build",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "no build step",
 )
