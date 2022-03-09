@@ -1,0 +1,45 @@
+name: 'update packages workflow'
+
+env:
+  MAIN_BRANCH: main
+  NODE_VERSION: 16.14.0
+
+on: workflow_dispatch
+
+jobs:
+  update_packages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout to head branch for PR
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.MAIN_BRANCH }}
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: setup please.build
+        uses: sagikazarmark/setup-please-action@v0
+
+      - name: check targets
+        id: check_targets
+        run: |
+          SERVICES=$(for i in `ls -1 svc`; do echo "//svc/$i "; done)
+          SERVICES_SINGLE_LINE=`echo $SERVICES | tr '\n' ' '`
+          echo "Services to build: '$SERVICES'"
+          echo "Services to build: '$SERVICES_SINGLE_LINE'"
+          echo "::set-output name=SERVICES::$SERVICES"
+          echo "::set-output name=SERVICES_SINGLE_LINE::$SERVICES_SINGLE_LINE"
+
+      - name: bump packages
+        run: plz run parallel `echo ${{ steps.check_targets.outputs.SERVICES_SINGLE_LINE }} | sed 's|//svc/[a-z\-]*|&:bump|g'`
+
+      - name: create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "bump: update packages"
+          branch: 'chore/bump-packages'
+          delete-branch: true
+          base: ${{ env.MAIN_BRANCH }}

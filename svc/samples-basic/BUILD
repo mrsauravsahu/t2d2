@@ -10,3 +10,9 @@ gentest(
   test_cmd="cd svc/samples-basic && npm ci && npm t",
   no_test_output=True
 )
+
+sh_cmd(
+  name = "bump",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/samples-basic update",
+)
