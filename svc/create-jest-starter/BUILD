@@ -10,3 +10,9 @@ sh_cmd(
   srcs = glob(["*"], ["node_modules", "BUILD"]),
   cmd = "echo no build step",
 )
+
+sh_cmd(
+  name = "bump",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/create-jest-starter update",
+)

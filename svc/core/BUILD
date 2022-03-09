@@ -10,3 +10,9 @@ sh_cmd(
   srcs = glob(["*"], ["node_modules", "BUILD"]),
   cmd = "npm --prefix svc/core ci && npm --prefix svc/core run build",
 )
+
+sh_cmd(
+  name = "bump",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/core update",
+)

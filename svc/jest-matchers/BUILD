@@ -10,3 +10,9 @@ sh_cmd(
   srcs = glob(["*"], ["node_modules", "BUILD"]),
   cmd = "npm --prefix svc/jest-matchers ci && npm --prefix svc/jest-matchers run build",
 )
+
+sh_cmd(
+  name = "bump",
+  srcs = glob(["*"], ["node_modules", "BUILD"]),
+  cmd = "npm --prefix svc/jest-matchers update",
+)
