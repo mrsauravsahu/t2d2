@@ -1,0 +1,9 @@
+node_modules
+.envrc
+
+*.t2d2
+.terraform
+*.tfstate
+*.tfstate.tmp
+*.tfstate.backup
+plan.json
